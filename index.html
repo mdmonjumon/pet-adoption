@@ -6,15 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Adopting</title>
 
-    <!-- tailwind and daisyUI cnd -->
+    <!-- google font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- tailwind and daisyUI cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        'btn-color': '#0E7A81'
+                    },
+                    fontFamily: {
+                        'lato-font': '"Lato", "serif"'
+                    }
+                }
+            }
+        }
+    </script>
+
 </head>
 
-<body>
-    <header>
-        
+<body class="font-lato-font">
+    <header class="max-w-screen-xl mx-auto">
+        <nav>
+            <div class="navbar justify-between py-10">
+                <div class="">
+                    <div class="flex items-center gap-2">
+                        <img class="h-full" src="./assets/logo.webp" alt="">
+                        <a class="text-3xl font-bold">Peddy</a>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="hidden md:flex gap-10 font-normal text-base ">
+                        <li><a>Home</a></li>
+                        <li><a>Shop</a></li>
+                        <li><a>Contact</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="">
+                    <div class="dropdown dropdown-end">
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src="./assets/icon.png" />
+                            </div>
+                        </div>
+                        <ul tabindex="0"
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3  p-2 shadow">
+                            <li><a>Home</a></li>
+                            <li><a>Shop</a></li>
+                            <li><a>Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
     </header>
 
 </body>
