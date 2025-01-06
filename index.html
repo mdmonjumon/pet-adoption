@@ -37,10 +37,10 @@
 </head>
 
 <body class="font-lato-font">
-    <header class="max-w-screen-xl mx-auto">
+    <header class="max-w-screen-xl mx-auto px-5 md:px-2">
         <nav>
             <div class="navbar justify-between py-10">
-                <div class="">
+                <div>
                     <div class="flex items-center gap-2">
                         <img class="h-full" src="./assets/logo.webp" alt="">
                         <a class="text-3xl font-bold">Peddy</a>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div>
-                    <ul class="hidden md:flex gap-10 font-normal text-base ">
+                    <ul class="hidden md:flex gap-8 font-normal text-base">
                         <li><a>Home</a></li>
                         <li><a>Shop</a></li>
                         <li><a>Contact</a></li>
@@ -58,13 +58,13 @@
 
                 <div class="">
                     <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                            <div class="w-10 rounded-full">
+                        <div tabindex="0" role="button" class=" avatar md:w-32 flex justify-end">
+                            <div class="w-10 rounded-full ">
                                 <img alt="Tailwind CSS Navbar component" src="./assets/icon.png" />
                             </div>
                         </div>
                         <ul tabindex="0"
-                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3  p-2 shadow">
+                            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3  p-2 shadow md:hidden">
                             <li><a>Home</a></li>
                             <li><a>Shop</a></li>
                             <li><a>Contact</a></li>
@@ -73,10 +73,99 @@
                 </div>
             </div>
         </nav>
-
-
     </header>
 
+    <main class="max-w-screen-xl mx-auto px-5 md:px-2">
+        <!-- hero section start here -->
+        <section class="text-center space-y-10">
+            <h3 class="font-bold text-2xl text-[#13131399]">Bringing Families Together 🔥</h3>
+
+            <h1 class="font-black text-7xl">Your Path to Adoption <br> Starts Here</h1>
+
+            <p class="font-normal text-base mx-auto lg:w-4/6">It is a long established fact that a reader will be
+                distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+
+            <div>
+                <button class="btn bg-btn-color text-xl font-bold text-white">View More</button>
+            </div>
+
+
+            <div class="flex justify-center">
+                <img src="./assets/pet.webp" alt="">
+            </div>
+        </section>
+        <!-- hero section ends here -->
+
+        <!-- Best Friend section starts here -->
+
+        <section id="best-friend" class="text-center mt-24 space-y-8">
+            <h2 class="font-black text-4xl">Adopt Your Best Friend</h2>
+            <p class="font-normal text-base text-[#131313B3] mx-auto lg:w-4/6">It is a long established fact that a
+                reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+
+
+        </section>
+        <!-- Best Friend section ends here -->
+
+
+        <!-- best deal section start here -->
+        <section id="best-deal">
+
+
+        </section>
+        <!-- best deal section end here -->
+
+    </main>
+
+    <!-- footer section start here -->
+    <footer class="bg-black text-white">
+        <section class="max-w-screen-xl mx-auto px-5 md:px-2 footer p-10 mt-10 justify-between">
+            <nav class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <img class="h-full" src="./assets/logo.webp" alt="">
+                    <a class="text-3xl font-bold">Peddy</a>
+                </div>
+                <div class="space-y-2 text-base font-normal">
+                    <p>Location: av. Washington 165, NY CA 54003</p>
+                    <p>Phone: +31 85 964 47 25</p>
+                    <p>Email: info@yourdomain.com</p>
+                    <p>Openings hours: 9.00 AM - 5.00 PM</p>
+                </div>
+                <div class="flex gap-2">
+                    <a href="https://www.facebook.com/" target="_blank"><img src="./assets/facebook.png" alt=""></a>
+                    <a href="https://x.com/" target="_blank"><img src="./assets/twitter.png" alt=""></a>
+                    <a href="https://www.youtube.com/" target="_blank"><img src="./assets/youtube.png" alt=""></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="./assets/instagram.png" alt=""></a>
+                </div>
+
+            </nav>
+            <nav>
+                <h6 class="font-bold text-lg">Useful Links</h6>
+                <div class="flex flex-col font-normal text-base">
+                    <a class="link link-hover">Home</a>
+                    <a class="link link-hover">About us</a>
+                    <a class="link link-hover">Animals</a>
+                    <a class="link link-hover">Foundation</a>
+                    <a class="link link-hover">Contact</a>
+                </div>
+            </nav>
+            <form>
+                <h6 class="font-bold text-lg">Drop a Message</h6>
+                <div class="space-y-4">
+                    <input type="text" placeholder="Enter your email" class="input input-bordered join-item" />
+                    <div><button class="btn bg-btn-color border-none text-white font-bold text-xl w-full ">Subscribe</button></div>
+                </div>
+
+            </form>
+        </section>
+    </footer>
+    <!-- footer section end here -->
+
+
+
+<script src="./script/pet.js"></script>
 </body>
 
 </html>
