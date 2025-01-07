@@ -17,10 +17,33 @@ const categoryBasePets = async (category) => {
     const res =
         await fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`);
     const data = await res.json();
-    displayPets(data.data);
 
+    // remove active class from category button
+    removeClass();
+
+    // add active class on category button
+    const activeButton = document.getElementById(`btn-${category}`)
+    console.log(activeButton);
+
+    activeButton.classList.remove("rounded-xl");
+    activeButton.classList.add("bg-[#0E7A811A]");
+    activeButton.classList.add("rounded-full");
+    activeButton.classList.add("border-[#0E7A811A]");
+
+
+
+    displayPets(data.data);
 }
 
+const removeClass = () => {
+    const allCategoryButton = document.getElementsByClassName('category-btn');
+    for(const button of allCategoryButton){
+        button.classList.remove('bg-[#0E7A811A]');
+        button.classList.remove("rounded-full");
+        button.classList.remove("border-[#0E7A811A]");
+        console.log(button)
+    }
+}
 
 
 
@@ -32,7 +55,7 @@ const displayCategoriesButton = (data) => {
     data.forEach(item => {
         const buttonDiv = document.createElement('div');
         buttonDiv.innerHTML = `
-        <button onclick="categoryBasePets('${item.category}')" class="rounded-xl border-2 w-56">
+        <button id="btn-${item.category}" onclick="categoryBasePets('${item.category}')" class="rounded-xl border-2 w-56 category-btn">
         <div class="flex items-center justify-center gap-2 py-3">
         <img src="${item.category_icon}">
         <span class="font-bold text-2xl">${item.category}</span>
@@ -49,8 +72,6 @@ const displayCategoriesButton = (data) => {
 // display pets
 const displayPets = (pets) => {
 
-
-
     // best deal header and sort by price container
     const bestDealInfoContainer = document.getElementById('best-deal-info');
     bestDealInfoContainer.innerHTML = `
@@ -60,7 +81,7 @@ const displayPets = (pets) => {
     `;
 
     const bestDealCardContainer = document.getElementById('best-deal-cards');
-    bestDealCardContainer.classList = "md:flex gap-4 my-10"
+    bestDealCardContainer.classList = "lg:flex gap-4 my-10"
 
     // clear the pets card container
     bestDealCardContainer.innerHTML = "";
@@ -82,15 +103,11 @@ const displayPets = (pets) => {
         `;
         bestDealDiv.append(div);
         bestDealDiv.classList = "w-full rounded-lg flex justify-center py-32 bg-[#13131308]"
-
-
     }
-
-
 
     // selected pets container
     const selectedPets = document.createElement('div');
-    selectedPets.classList = "min-w-full lg:w-2/5 grid grid-cols-2 gap-2 border p-2 rounded-lg"
+    selectedPets.classList = "lg:w-2/5 grid grid-cols-2 gap-2 border p-2 rounded-lg mt-10 lg:mt-0"
     // allPets and selected pets append to best deal container
     bestDealCardContainer.append(bestDealDiv, selectedPets);
 
