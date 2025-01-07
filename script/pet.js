@@ -22,26 +22,23 @@ const categoryBasePets = async (category) => {
     removeClass();
 
     // add active class on category button
-    const activeButton = document.getElementById(`btn-${category}`)
-    console.log(activeButton);
-
+    const activeButton = document.getElementById(`btn-${category}`);
     activeButton.classList.remove("rounded-xl");
     activeButton.classList.add("bg-[#0E7A811A]");
     activeButton.classList.add("rounded-full");
     activeButton.classList.add("border-[#0E7A811A]");
 
-
-
+    // Display pets function call with fetch data
     displayPets(data.data);
 }
 
 const removeClass = () => {
     const allCategoryButton = document.getElementsByClassName('category-btn');
-    for(const button of allCategoryButton){
+    for (const button of allCategoryButton) {
         button.classList.remove('bg-[#0E7A811A]');
         button.classList.remove("rounded-full");
         button.classList.remove("border-[#0E7A811A]");
-        console.log(button)
+        button.classList.add("rounded-xl");
     }
 }
 
@@ -69,6 +66,21 @@ const displayCategoriesButton = (data) => {
     categoriesButtonContainer.appendChild(buttonContainer)
 }
 
+
+
+// selected pets display
+const displaySelectedPets = (image) => {
+
+    const selectedPet = document.createElement('div');
+    selectedPet.innerHTML = `
+    <img src="${image}">
+    `;
+
+
+
+}
+
+
 // display pets
 const displayPets = (pets) => {
 
@@ -80,20 +92,16 @@ const displayPets = (pets) => {
      text-white bg-[#0E7A81] py-4 px-8 rounded-xl">Sort by Price</button>
     `;
 
-    const bestDealCardContainer = document.getElementById('best-deal-cards');
-    bestDealCardContainer.classList = "lg:flex gap-4 my-10"
-
-    // clear the pets card container
-    bestDealCardContainer.innerHTML = "";
-
     // all pets container
-    const bestDealDiv = document.createElement('div');
+    const bestDealDiv = document.getElementById('cards-container')
+    // clear the pets card container
+    bestDealDiv.innerHTML = "";
     bestDealDiv.classList = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
 
 
     if (pets.length === 0) {
-
-        bestDealCardContainer.innerHTML = ""
+        // clear the pets card container
+        bestDealDiv.innerHTML = ""
 
         const div = document.createElement('div');
         div.innerHTML = `<div class="flex flex-col items-center">
@@ -106,10 +114,11 @@ const displayPets = (pets) => {
     }
 
     // selected pets container
-    const selectedPets = document.createElement('div');
+    const selectedPets = document.getElementById('selected-pets-container');
+    // const selectedPets = document.createElement('div');
     selectedPets.classList = "lg:w-2/5 grid grid-cols-2 gap-2 border p-2 rounded-lg mt-10 lg:mt-0"
     // allPets and selected pets append to best deal container
-    bestDealCardContainer.append(bestDealDiv, selectedPets);
+    // bestDealCardContainer.append(bestDealDiv, selectedPets);
 
 
 
@@ -145,7 +154,7 @@ const displayPets = (pets) => {
             </div>
             
             <div class="flex justify-between gap-1">
-                <button class="btn "><img src="./assets/like.png"></button>
+                <button onclick="displaySelectedPets()" class="btn "><img src="./assets/like.png"></button>
                 <button class="btn font-bold text-lg text-[#0E7A81]">Adopt</button>
                 <button class="btn font-bold text-lg text-[#0E7A81]">Details</button>
             </div>
@@ -155,13 +164,11 @@ const displayPets = (pets) => {
 
         bestDealDiv.append(card)
 
+
     })
 
 
 }
-
-
-
 
 
 
