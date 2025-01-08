@@ -112,7 +112,7 @@ const displayPetDetails = (details) => {
                 <img class="w-full rounded-md" src="${details.image}">
 
                 <h3 class="text-2xl font-bold">${details.pet_name}</h3>
-                <div class="flex gap-4 border-b-2 pb-3">
+                <div class="lg:flex gap-4 border-b-2 pb-3">
                     <div>
                         <div class="flex gap-1">
                             <img src="./assets/breed.png">
@@ -166,7 +166,7 @@ const displayPetDetails = (details) => {
 // adopt pets
 const adoptModal = (event) => {
     const targetedButton = event.target;
-    targetedButton.innerText ="Adopted";
+    targetedButton.innerText = "Adopted";
     targetedButton.setAttribute("disabled", "true");
 
     const adoptModalContainer = document.getElementById('adopt-modal');
@@ -202,7 +202,7 @@ const displayPets = (pets) => {
     const bestDealInfoContainer = document.getElementById('best-deal-info');
     bestDealInfoContainer.innerHTML = `
     <h2 class="font-black text-2xl">Best Deal For you</h2>
-    <button onclick="sortByPrice()" class="font-bold text-xl text-white bg-[#0E7A81] py-4 px-8 rounded-xl">Sort by Price</button>
+    <button onclick="sortByPrice(${pets})" class="font-bold text-xl text-white bg-[#0E7A81] py-4 px-8 rounded-xl">Sort by Price</button>
     `;
 
     // all pets container
@@ -275,18 +275,10 @@ const displayPets = (pets) => {
 
 
 const sortByPrice = (pets)=>{
-    
-    
-    
-    
 
-
-
-    
 
 
 }
-
 
 
 
