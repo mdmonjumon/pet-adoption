@@ -7,12 +7,15 @@ const loadCategories = async () => {
 
 // fetch all pets
 const loadAllPets = async () => {
+    // add hidden class on all-pets-and-selected-pets-container 
+    document.getElementById('all-pets-and-selected-pets-container').classList.add('hidden');
+
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
     const data = await res.json();
-
+    
     // spin while fetching all data
     document.getElementById('spinner').classList.remove('hidden');
-    document.getElementById('all-pets-and-selected-pets-container').classList.add('hidden');
+    
     setTimeout(() => {
         document.getElementById('spinner').classList.add('hidden');
         document.getElementById('all-pets-and-selected-pets-container').classList.remove('hidden');
