@@ -163,6 +163,38 @@ const displayPetDetails = (details) => {
 
 
 
+// adopt pets
+const adoptModal = (event) => {
+    const targetedButton = event.target;
+    targetedButton.innerText ="Adopted";
+    targetedButton.setAttribute("disabled", "true");
+
+    const adoptModalContainer = document.getElementById('adopt-modal');
+    let count = 3
+    adoptModalContainer.innerHTML = ` 
+
+    <dialog id="myModal" class="modal sm:modal-middle">
+        <div class="modal-box flex flex-col items-center py-10">
+            <img class="w-20" src="./assets/handshake.png">
+            <h3 class="text-2xl font-black">Congrats!</h3>
+            <p class="font-normal text-xl">Adoption process is star for your Pet</p>
+            <span id="countdown" class="font-black text-4xl">${count}</span>
+        </div>
+    </dialog>
+    `;
+
+    document.getElementById('myModal').setAttribute("open", "true")
+    const clockId = setInterval(() => {
+        count--
+        document.getElementById('countdown').innerText = count;
+        if (count === 0) {
+            clearInterval(clockId);
+            document.getElementById('myModal').removeAttribute("open")
+        }
+    }, 1000);
+}
+
+
 
 // display pets
 const displayPets = (pets) => {
@@ -242,40 +274,6 @@ const displayPets = (pets) => {
 
 }
 
-
-
-
-
-
-const adoptModal = (event) => {
-    const targetedButton = event.target;
-    targetedButton.innerText ="Adopted";
-    targetedButton.setAttribute("disabled", "true");
-
-    const adoptModalContainer = document.getElementById('adopt-modal');
-    let count = 3
-    adoptModalContainer.innerHTML = ` 
-
-    <dialog id="myModal" class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box flex flex-col items-center py-10">
-            <img class="w-20" src="./assets/handshake.png">
-            <h3 class="text-2xl font-black">Congrats!</h3>
-            <p class="font-normal text-xl">Adoption process is star for your Pet</p>
-            <span id="countdown" class="font-black text-4xl">${count}</span>
-        </div>
-    </dialog>
-    `;
-
-    document.getElementById('myModal').setAttribute("open", "true")
-    const clockId = setInterval(() => {
-        count--
-        document.getElementById('countdown').innerText = count;
-        if (count === 0) {
-            clearInterval(clockId);
-            document.getElementById('myModal').removeAttribute("open")
-        }
-    }, 1000);
-}
 
 
 
