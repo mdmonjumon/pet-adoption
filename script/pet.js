@@ -198,13 +198,11 @@ const adoptModal = (event) => {
 
 // display pets
 const displayPets = (pets) => {
-
     // best deal header and sort by price container
     const bestDealInfoContainer = document.getElementById('best-deal-info');
     bestDealInfoContainer.innerHTML = `
     <h2 class="font-black text-2xl">Best Deal For you</h2>
-    <button class="font-bold text-xl 
-     text-white bg-[#0E7A81] py-4 px-8 rounded-xl">Sort by Price</button>
+    <button onclick="sortByPrice()" class="font-bold text-xl text-white bg-[#0E7A81] py-4 px-8 rounded-xl">Sort by Price</button>
     `;
 
     // all pets container
@@ -276,7 +274,18 @@ const displayPets = (pets) => {
 
 
 
+const sortByPrice = (pets)=>{
+    
+    
+    
+    
 
+
+
+    
+
+
+}
 
 
 
