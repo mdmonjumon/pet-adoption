@@ -228,7 +228,7 @@ const displayPets = (pets) => {
             
             <div class="flex justify-between gap-1 border-t-2 pt-3">
                 <button onclick="displaySelectedPets('${pet.image}')" class="btn "><img src="./assets/like.png"></button>
-                <button onclick="adoptPet()" class="btn font-bold text-lg text-[#0E7A81]">Adopt</button>
+                <button onclick="adoptModal(event)" class="btn font-bold text-lg text-[#0E7A81]">Adopt</button>
                 <button onclick="petDetails('${pet.petId}')" class="btn font-bold text-lg text-[#0E7A81]">Details</button>
             </div>
         </div>
@@ -243,12 +243,49 @@ const displayPets = (pets) => {
 }
 
 
-const adoptPet = () => {
-console.log('adopt')
+
+
+
+
+const adoptModal = (event) => {
+    const targetedButton = event.target;
+    targetedButton.innerText ="Adopted";
+    targetedButton.setAttribute("disabled", "true");
+
+    const adoptModalContainer = document.getElementById('adopt-modal');
+    let count = 3
+    adoptModalContainer.innerHTML = ` 
+
+    <dialog id="myModal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box flex flex-col items-center py-10">
+            <img class="w-20" src="./assets/handshake.png">
+            <h3 class="text-2xl font-black">Congrats!</h3>
+            <p class="font-normal text-xl">Adoption process is star for your Pet</p>
+            <span id="countdown" class="font-black text-4xl">${count}</span>
+        </div>
+    </dialog>
+    `;
+
+    document.getElementById('myModal').setAttribute("open", "true")
+    const clockId = setInterval(() => {
+        count--
+        document.getElementById('countdown').innerText = count;
+        if (count === 0) {
+            clearInterval(clockId);
+            document.getElementById('myModal').removeAttribute("open")
+        }
+    }, 1000);
 }
+
+
+
+
+
 
 
 
 
 loadAllPets();
 loadCategories();
+
+
