@@ -9,7 +9,14 @@ const loadCategories = async () => {
 const loadAllPets = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/peddy/pets');
     const data = await res.json();
-    displayPets(data.pets);
+
+    // spin while fetching all data
+    document.getElementById('spinner').classList.remove('hidden');
+    setTimeout(() => {
+        document.getElementById('spinner').classList.add('hidden');
+        displayPets(data.pets);
+
+    }, 2000);
 }
 
 // fetch for category base pets
@@ -29,8 +36,26 @@ const categoryBasePets = async (category) => {
     activeButton.classList.add("border-[#0E7A811A]");
 
     // Display pets function call with fetch data
-    displayPets(data.data);
+    // spin while fetching all data
+    document.getElementById('spinner').classList.remove('hidden');
+    document.getElementById('all-pets-and-selected-pets-container').classList.add('hidden');
+    setTimeout(() => {
+        document.getElementById('spinner').classList.add('hidden');
+        document.getElementById('all-pets-and-selected-pets-container').classList.remove('hidden');
+        displayPets(data.data);
+    }, 2000);
 }
+
+
+// fetch pet details
+const petDetails = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`);
+    const data = await res.json();
+    displayPetDetails(data.petData);
+}
+
+
+
 
 const removeClass = () => {
     const allCategoryButton = document.getElementsByClassName('category-btn');
@@ -41,7 +66,6 @@ const removeClass = () => {
         button.classList.add("rounded-xl");
     }
 }
-
 
 
 // Display all category buttons
@@ -59,7 +83,6 @@ const displayCategoriesButton = (data) => {
         </div>
         </button>
         `;
-
         buttonContainer.append(buttonDiv)
     });
 
@@ -70,15 +93,75 @@ const displayCategoriesButton = (data) => {
 
 // selected pets display
 const displaySelectedPets = (image) => {
-
+    const selectedPetsContainer = document.getElementById('selected-pets-container');
     const selectedPet = document.createElement('div');
     selectedPet.innerHTML = `
-    <img src="${image}">
+    <img class="rounded-md w-full" src="${image}">
+    `;
+    selectedPetsContainer.append(selectedPet);
+}
+
+
+
+// display pet details
+const displayPetDetails = (details) => {
+    const modalSection = document.getElementById('modal');
+    modalSection.innerHTML = `
+        <dialog id="my_modal_1" class="modal">
+            <div class="modal-box space-y-3">
+                <img class="w-full rounded-md" src="${details.image}">
+
+                <h3 class="text-2xl font-bold">${details.pet_name}</h3>
+                <div class="flex gap-4 border-b-2 pb-3">
+                    <div>
+                        <div class="flex gap-1">
+                            <img src="./assets/breed.png">
+                            <span> Breed: ${details.breed ? details.breed : 'N/A'} </span>
+                        </div>
+
+                        <div class="flex gap-1">
+                            <img src="./assets/gander.png">
+                            <span> Gander: ${details.gender ? details.gender : 'N/A'} </span>
+                        </div>
+
+                        <div class="flex gap-1">
+                            <img src="./assets/gander.png">
+                            <span> Vaccinated status: ${details.vaccinated_status ? details.vaccinated_status : 'N/A'} </span>
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div class="flex gap-1">
+                            <img src="./assets/birth.png">
+                            <span> Birth: ${details.date_of_birth ? details.date_of_birth : 'N/A'} </span>
+                        </div>
+                        <div class="flex gap-1">
+                            <img src="./assets/dollar.png">
+                            <span> Price: ${details.price ? details.price : 'N/A'} </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <h3 class="font-semibold text-base">Details Information</h3>
+                <p>${details.pet_details}</p>
+                
+                <div class="modal-action">
+                    <form method="dialog" class="w-full">
+                        <button class="font-bold text-[#0E7A81] py-3 bg-[#0E7A811A] border-2 rounded-md w-full">Cancel</button>
+                    </form>
+                </div>
+            </div>
+         </dialog>
     `;
 
-
+    my_modal_1.showModal()
 
 }
+
+
 
 
 // display pets
@@ -98,7 +181,6 @@ const displayPets = (pets) => {
     bestDealDiv.innerHTML = "";
     bestDealDiv.classList = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
 
-
     if (pets.length === 0) {
         // clear the pets card container
         bestDealDiv.innerHTML = ""
@@ -112,15 +194,6 @@ const displayPets = (pets) => {
         bestDealDiv.append(div);
         bestDealDiv.classList = "w-full rounded-lg flex justify-center py-32 bg-[#13131308]"
     }
-
-    // selected pets container
-    const selectedPets = document.getElementById('selected-pets-container');
-    // const selectedPets = document.createElement('div');
-    selectedPets.classList = "lg:w-2/5 grid grid-cols-2 gap-2 border p-2 rounded-lg mt-10 lg:mt-0"
-    // allPets and selected pets append to best deal container
-    // bestDealCardContainer.append(bestDealDiv, selectedPets);
-
-
 
 
     pets.forEach(pet => {
@@ -148,18 +221,18 @@ const displayPets = (pets) => {
             <span>Gender: ${pet.gender ? pet.gender : 'N/A'}</span>
             </div>
 
-            <div class="flex gap-1">
+            <div class="flex gap-1 pb-2">
             <img src="./assets/dollar.png">
            <span>Price: ${pet.price ? pet.price : 'N/A'}</span>
             </div>
             
-            <div class="flex justify-between gap-1">
-                <button onclick="displaySelectedPets()" class="btn "><img src="./assets/like.png"></button>
-                <button class="btn font-bold text-lg text-[#0E7A81]">Adopt</button>
-                <button class="btn font-bold text-lg text-[#0E7A81]">Details</button>
+            <div class="flex justify-between gap-1 border-t-2 pt-3">
+                <button onclick="displaySelectedPets('${pet.image}')" class="btn "><img src="./assets/like.png"></button>
+                <button onclick="adoptPet()" class="btn font-bold text-lg text-[#0E7A81]">Adopt</button>
+                <button onclick="petDetails('${pet.petId}')" class="btn font-bold text-lg text-[#0E7A81]">Details</button>
             </div>
         </div>
-    </div>
+        </div>
         `;
 
         bestDealDiv.append(card)
@@ -167,15 +240,15 @@ const displayPets = (pets) => {
 
     })
 
+}
 
+
+const adoptPet = () => {
+console.log('adopt')
 }
 
 
 
 
-
-
-
-
-loadCategories();
 loadAllPets();
+loadCategories();
