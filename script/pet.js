@@ -12,8 +12,10 @@ const loadAllPets = async () => {
 
     // spin while fetching all data
     document.getElementById('spinner').classList.remove('hidden');
+    document.getElementById('all-pets-and-selected-pets-container').classList.add('hidden');
     setTimeout(() => {
         document.getElementById('spinner').classList.add('hidden');
+        document.getElementById('all-pets-and-selected-pets-container').classList.remove('hidden');
         displayPets(data.pets);
 
     }, 2000);
@@ -206,9 +208,11 @@ const displayPets = (pets) => {
     `;
 
     // all pets container
-    const bestDealDiv = document.getElementById('cards-container')
-    // clear the pets card container
+    const bestDealDiv = document.getElementById('cards-container');
+    
+    // clear the all pets card container
     bestDealDiv.innerHTML = "";
+    
     bestDealDiv.classList = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
 
     if (pets.length === 0) {
@@ -274,7 +278,7 @@ const displayPets = (pets) => {
 
 
 
-const sortByPrice = (pets)=>{
+const sortByPrice = (pet)=>{
 
 
 
